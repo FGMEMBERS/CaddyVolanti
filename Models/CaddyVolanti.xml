@@ -1,0 +1,453 @@
+<PropertyList>
+
+  <path>CaddyVolanti.ac</path>
+
+  <nasal>
+    <load>
+      var livery_update = aircraft.livery_update.new("Aircraft/CaddyVolanti/Models/Liveries");
+      var self = cmdarg();
+
+      var float_0 = self.getNode("sim/multiplay/generic/float[0]", 1);
+      var float_1 = self.getNode("sim/multiplay/generic/float[1]", 1);
+
+    </load>
+  <unload><![CDATA[
+    livery_update.stop();
+  ]]></unload>
+  </nasal>
+  <!-- Main rotor-->
+ <animation>
+    <type>spin</type>
+<object-name>Main Rotor</object-name>
+ <property>rotors/main/rpm</property>
+    <factor> 5 </factor>
+    <center>
+      <x-m> -0.19685 </x-m>
+      <y-m> 0.0 </y-m>
+      <z-m>  1.93426 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y>  0 </y>
+      <z>  1 </z>
+    </axis>
+  </animation>
+ <!-- Tail Rotor -->
+<animation>
+    <type>spin</type>
+<object-name>Side Rotor</object-name>
+ <property>rotors/main/rpm</property>
+    <factor> 1 </factor>
+    <center>
+      <x-m> 0.85782 </x-m>
+      <y-m> 0.65376 </y-m>
+      <z-m>  0.84181 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y>  1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+<!-- ========== Effects ========= -->
+<animation>
+  <type>material</type>
+  <object-name>CaddyVolanti-Body</object-name>
+  <object-name>frontwheel</object-name>
+  <object-name>backwheel</object-name>
+  <object-name>Steering</object-name>
+  <property-base>sim/model/livery</property-base>
+  <texture-prop>texture</texture-prop>
+  <texture>Liveries/BaseColor.png</texture>
+</animation>
+<effect>
+ <inherits-from>Effects/glass</inherits-from>
+ <object-name>Windows</object-name>
+</effect>
+<animation>
+  <object-name>frontwheel</object-name>
+  <object-name>frontwheel2</object-name>
+  <type>rotate</type>
+  <property>controls/flight/rudder</property>
+  <factor>-4</factor>
+  <offset-deg>0</offset-deg>
+  <center>
+   <x-m> -1.1866 </x-m>
+   <y-m> 0   </y-m>
+   <z-m> 0.25495 </z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+ <animation>
+  <type>spin</type>
+  <object-name>frontwheel</object-name>
+  <object-name>frontwheel2</object-name>
+  <property>gear/gear[0]/rollspeed-ms</property>
+  <factor>10</factor>
+  <center>
+   <x-m> -1.1866 </x-m>
+   <y-m> 0   </y-m>
+   <z-m> 0.25495 </z-m>
+  </center>
+  <axis>
+	<x>0.0</x>
+   <y>-1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+<animation>
+  <type>spin</type>
+  <object-name>backwheel</object-name>
+  <object-name>backwheel2</object-name>
+  <property>gear/gear[2]/rollspeed-ms</property>
+  <factor>5</factor>
+  <center>
+   <x-m> 0.78008 </x-m>
+   <y-m> 0   </y-m>
+   <z-m> 0.25495 </z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>-1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+<animation>
+  <object-name>Steering</object-name>
+  <object-name>Steering L1</object-name>
+  <type>rotate</type>
+  <property>controls/flight/aileron</property>
+<factor>80</factor>
+  <offset-deg>0</offset-deg>
+  <center>
+   <x-m> -0.35071 </x-m>
+   <y-m> -0.25689 </y-m>
+   <z-m> 1.15914 </z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+<animation>
+  <object-name>Steering</object-name>
+  <object-name>Steering L1</object-name>
+  <type>rotate</type>
+  <property>controls/flight/rudder</property>
+<factor>80</factor>
+  <offset-deg>0</offset-deg>
+  <center>
+   <x-m> -0.35071 </x-m>
+   <y-m> -0.25689 </y-m>
+   <z-m> 1.15914 </z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+<animation>
+ <type>material</type>
+ <object-name>Brakes</object-name>
+<emission>
+  <red>4.0</red>
+  <green>0.0</green>
+  <blue>0.0</blue>
+  <factor-prop>/controls/gear/brake-parking</factor-prop>
+ </emission>
+</animation>
+<animation>
+ <type>material</type>
+ <object-name>Left Indicator</object-name>
+ <emission>
+  <red>2.0</red>
+  <green>0.8</green>
+  <blue>0.2</blue>
+  <factor-prop>sim/model/lights/indicator-left/state</factor-prop>
+ </emission>
+</animation>
+
+<animation>
+ <type>material</type>
+ <object-name>Right Indicator</object-name>
+ <emission>
+  <red>1.0</red>
+  <green>1.0</green>
+  <blue>1.0</blue>
+  <factor-prop>sim/model/lights/indicator-right/state</factor-prop>
+ </emission>
+</animation>
+<animation>
+<type>select</type>
+  <object-name>LL</object-name>
+<condition>
+<and>
+<property>/sim/rendering/rembrandt/enabled</property>
+<greater-than>
+            <property>/sim/time/sun-angle-rad</property>
+            <value>1.57</value>
+         </greater-than>
+      </and>
+</condition>
+ </animation>
+<animation>
+<type>select</type>
+  <object-name>RR</object-name>
+<condition>
+<and>
+<property>/sim/rendering/rembrandt/enabled</property>
+<greater-than>
+            <property>/sim/time/sun-angle-rad</property>
+            <value>1.57</value>
+         </greater-than>
+      </and>
+</condition>
+ </animation>
+<animation>
+   <type>light</type>
+   <light-type>spot</light-type>
+   <name>LL</name>
+   <object-name>LL</object-name>
+   <nopreview/>
+   <position>
+     <x>-1.38749</x>
+     <y>-0.43533</y>
+     <z>0.7003</z>
+   </position>
+   <direction>
+     <x>-1.39</x>
+     <y>-0.43533</y>
+     <z>-0.1</z>
+   </direction>
+    <ambient>
+            <r>0.5</r>
+            <g>0.5</g>
+            <b>0.5</b>
+            <a>1.0</a>
+        </ambient>
+        <diffuse>
+            <r>0.7</r>
+            <g>0.7</g>
+            <b>0.6</b>
+            <a>1.0</a>
+        </diffuse>
+        <specular>
+            <r>0.8</r>
+            <g>0.8</g>
+            <b>0.8</b>
+            <a>1.0</a>
+        </specular>
+        <attenuation>
+            <c>1.0</c>
+            <l>0.002</l>
+            <q>0.00005</q>
+        </attenuation>
+        <exponent>30.0</exponent>
+        <cutoff>100</cutoff>
+        <near-m>2</near-m>
+        <far-m>1000</far-m>
+    </animation>
+<animation>
+   <type>light</type>
+   <light-type>spot</light-type>
+   <name>RR</name>
+   <object-name>RR</object-name>
+   <nopreview/>
+      <position>
+     <x>-1.38749</x>
+     <y>0.43533</y>
+     <z>0.7003</z>
+   </position>
+   <direction>
+     <x>-1.39</x>
+     <y>0.43533</y>
+     <z>-0.1</z>
+   </direction>
+    <ambient>
+            <r>0.5</r>
+            <g>0.5</g>
+            <b>0.5</b>
+            <a>1.0</a>
+        </ambient>
+        <diffuse>
+            <r>0.7</r>
+            <g>0.7</g>
+            <b>0.6</b>
+            <a>1.0</a>
+        </diffuse>
+        <specular>
+            <r>0.8</r>
+            <g>0.8</g>
+            <b>0.8</b>
+            <a>1.0</a>
+        </specular>
+        <attenuation>
+            <c>1.0</c>
+            <l>0.002</l>
+            <q>0.00005</q>
+        </attenuation>
+        <exponent>30.0</exponent>
+        <cutoff>100</cutoff>
+        <near-m>2</near-m>
+        <far-m>1000</far-m>
+    </animation>
+<animation>
+ <type>material</type>
+  <object-name>Lights</object-name>
+  <object-name>Steering L1</object-name>
+  <object-name>Accelerator</object-name>
+  <object-name>Decelerator</object-name>
+<condition>
+<greater-than>
+            <property>/sim/time/sun-angle-rad</property>
+            <value>1.57</value>
+         </greater-than>
+</condition>
+ <emission>
+  <red>1.0</red>
+  <green>1.0</green>
+  <blue>1.0</blue>
+ </emission>
+</animation>
+<animation>
+ <type>timed</type>
+ <object-name>FlashOn</object-name>
+ <object-name>FlashOff</object-name>
+ <use-personality type="bool">true</use-personality>
+ <branch-duration-sec>
+  <random>
+   <min>2</min>
+   <max>2.1</max>
+  </random>
+ </branch-duration-sec>
+ <branch-duration-sec>
+  <random>
+   <min>1</min>
+   <max>1.1</max>
+  </random>
+ </branch-duration-sec>
+</animation>
+<animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>Start</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+  <binding>
+      <command>nasal</command>
+      <script>bulldogrs.Startup()</script>
+    </binding>
+  </action>
+ </animation>
+<animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>Stop</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+  <binding>
+      <command>nasal</command>
+      <script>bulldogrs.Shutdown()</script>
+    </binding>
+  </action>
+ </animation>
+<animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>ParkingBrake</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+  <binding>
+   <command>property-toggle</command>
+    <property>/controls/gear/brake-parking</property>
+    </binding>
+  </action>
+ </animation>
+<animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>RotorBrake</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+  <binding>
+  <command>property-toggle</command>
+    <property>/controls/rotor/brake</property>
+    </binding>
+  </action>
+ </animation>
+<animation>
+ <type>material</type>
+ <object-name>RotorBrake</object-name>
+<emission>
+  <red>2.0</red>
+  <green>2.0</green>
+  <blue>2.0</blue>
+  <factor-prop>/controls/rotor/brake</factor-prop>
+ </emission>
+</animation>
+<animation>
+ <type>material</type>
+ <object-name>ParkingBrake</object-name>
+<emission>
+  <red>2.0</red>
+  <green>2.0</green>
+  <blue>2.0</blue>
+  <factor-prop>/controls/gear/brake-parking</factor-prop>
+ </emission>
+</animation>
+<animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>Accelerator</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+  <binding>
+   <command>property-adjust</command>
+    <property>/controls/engines/engine/throttle</property>
+<step>-0.05</step>
+  <min>0</min>
+  <max>1</max>
+  <wrap>false</wrap>
+    </binding>
+  </action>
+ </animation>
+<animation>
+  <type>pick</type>
+  <visible>true</visible>
+  <object-name>Decelerator</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>true</repeatable>
+  <binding>
+   <command>property-adjust</command>
+    <property>/controls/engines/engine/throttle</property>
+<step>0.05</step>
+  <min>0</min>
+  <max>1</max>
+  <wrap>false</wrap>
+    </binding>
+  </action>
+ </animation>
+
+ <model>
+  <name>Pushback</name>
+  <path>Models/Airport/Pushback/Forklift.xml</path>
+  <offsets>
+   <x-m>-1.46531</x-m>
+   <y-m>0</y-m>
+   <z-m>0</z-m>
+  </offsets>
+ </model>
+</PropertyList>
+ 
